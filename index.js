@@ -20,7 +20,28 @@
         return toString.call(arr) === '[object Array]'
     }
 
-    function typeEqual(type,arg){
+
+    //TODO 生成错误信息
+    function typeEqual(type,arg,executeReportFunction){
+        if(arg === undefined || arg === null){
+            if(arg === type){
+                return true;
+            }else{
+                 executeReportFunction('type error');
+            }
+        }else if(toString.call(arg) !== '[object Object]'){
+            if(toString.call(type) === toString.call(arg)){
+                return true;
+            }else {
+                executeReportFunction('type error');
+            }
+        }else{
+            if(arg instanceof type){
+                return true;
+            }else {
+                executeReportFunction('type error');
+            }
+        }
 
     }
 
