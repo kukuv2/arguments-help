@@ -3,7 +3,7 @@
 javascript中并没有重载这个概念,通用的做法一般是在函数内部去判断参数的个数和类型并以此进行不同的操作.
 
 在许多开源项目中经常能看到大段的判断参数类型和参数个数的代码,个人觉得这些代码不规范的存在于函数的内部,极大的影响了代码的可读性,所以arguments-help就是为了减少大家的重复代码,提高JavaScript的开发效率和可读性而存在的.
-
+仍有部分功能未开发完.
 ### arguments-help能够帮助你检查参数类型
 ```JavaScript
 var Ah = require('arguments-help');
@@ -46,6 +46,7 @@ var ah = Ah(arguments,{
   });
 ```
 ### arguments-help的报错方式.
+
 默认是以浏览器端的console.error来提示类型检查错误,你可以设定你自己的提示错误方式.
 ```JavaScript
 var Ah = Ah(arguments,{
