@@ -45,10 +45,35 @@
 
     }
 
+    function changeConstructorToOrigType(type) {
+        switch (type) {
+            case String:
+                type = '';
+                break;
+            case Number:
+                type = 0;
+                break;
+            case Boolean:
+                type = true;
+                break;
+            case RegExp:
+                type = new RegExp();
+                break;
+            case Array:
+                type = [];
+                break;
+            default:
+                type = type;
+        }
+        return type
+
+    }
+
     function checkUnitType(argType, arg) {
 
         if (isArray(argType)) {
             return argType.some(function (item) {
+                item = changeConstructorToOrigType(item);
                 return typeEqual(item, arg);
             })
         } else {
