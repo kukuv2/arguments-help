@@ -22,37 +22,37 @@
 
 
     //TODO 生成错误信息
-    function typeEqual(type, arg, executeReportFunction) {
+    function typeEqual(type, arg) {
         if (arg === undefined || arg === null) {
             if (arg === type) {
                 return true;
             } else {
-                executeReportFunction('type error');
+                return false;
             }
         } else if (toString.call(arg) !== '[object Object]') {
             if (toString.call(type) === toString.call(arg)) {
                 return true;
             } else {
-                executeReportFunction('type error');
+                return false;
             }
         } else {
             if (arg instanceof type) {
                 return true;
             } else {
-                executeReportFunction('type error');
+                return false;
             }
         }
 
     }
 
-    function checkUnitType(argType, arg, executeReportFunction) {
+    function checkUnitType(argType, arg) {
 
         if (isArray(argType)) {
-            argType.some(function (item) {
-                return typeEqual(item, arg, executeReportFunction);
+            return argType.some(function (item) {
+                return typeEqual(item, arg);
             })
         } else {
-            return typeEqual(argType, arg, executeReportFunction)
+            return typeEqual(argType, arg)
         }
     }
 
@@ -62,7 +62,8 @@
             argsType = [argsType];
         }
         for (var i = 0; i < args.length; i++) {
-            if (!checkUnitType(argsType[i], args[i], executeReportFunction)) {
+            if (!checkUnitType(argsType[i], args[i])) {
+                executeReportFunction('type error');
                 return false;
             } else {
                 return true;
