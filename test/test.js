@@ -6,7 +6,7 @@ describe('arguments-help', function () {
             var intArg = 0, strArg = '', funArg = Function, undefinedType, rangeType = [Number, String];
             var ah     = Ah(arguments, {
                 1: [[intArg], function (intArg) {
-                    assert(2, arguments.length);
+                    assert(1===arguments.length);
                     assert(toString.call(arguments[0]) === '[object Number]')
 
                 }]
